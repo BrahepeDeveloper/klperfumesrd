@@ -5,6 +5,8 @@ import Link from "next/link";
 import { formatPrice } from "@/lib/format";
 import ProductVariantSelector from "@/components/ProductVariantSelector";
 
+export const dynamic = "force-dynamic";
+
 type Props = { params: Promise<{ slug: string }> };
 
 async function getProduct(slug: string) {

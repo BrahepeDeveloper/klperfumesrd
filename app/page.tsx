@@ -4,32 +4,39 @@ import TrustBadges from "@/components/TrustBadges";
 import ProductCard, { type ProductCardData } from "@/components/ProductCard";
 import Link from "next/link";
 
-async function getFeaturedProducts(): Promise<ProductCardData[]> {
-  const productos = await prisma.producto.findMany({
-    where: { activo: true },
-    take: 8,
-    orderBy: { fechaCreacion: "desc" },
-    include: {
-      marca: true,
-      genero: true,
-      imagenes: { where: { esPrincipal: true }, take: 1 },
-      variantes: { where: { activo: true } },
-      familiasOlfativas: { include: { familia: true }, take: 1 },
-    },
-  });
+export const dynamic = "force-dynamic";
 
-  return productos.map((p) => {
-    const precios = p.variantes.map((v) => Number(v.precio)).filter((n) => n > 0);
-    return {
-      slug: p.slug,
-      nombre: p.nombre,
-      marca: p.marca.nombre,
-      genero: p.genero.nombre,
-      imagenUrl: p.imagenes[0]?.urlWebp ?? null,
-      precioDesde: precios.length > 0 ? Math.min(...precios) : 0,
-      familiaOlfativa: p.familiasOlfativas[0]?.familia.nombre ?? null,
-    };
-  });
+async function getFeaturedProducts(): Promise<ProductCardData[]> {
+  try {
+    const productos = await prisma.producto.findMany({
+      where: { activo: true },
+      take: 8,
+      orderBy: { fechaCreacion: "desc" },
+      include: {
+        marca: true,
+        genero: true,
+        imagenes: { where: { esPrincipal: true }, take: 1 },
+        variantes: { where: { activo: true } },
+        familiasOlfativas: { include: { familia: true }, take: 1 },
+      },
+    });
+
+    return productos.map((p) => {
+      const precios = p.variantes.map((v) => Number(v.precio)).filter((n) => n > 0);
+      return {
+        slug: p.slug,
+        nombre: p.nombre,
+        marca: p.marca.nombre,
+        genero: p.genero.nombre,
+        imagenUrl: p.imagenes[0]?.urlWebp ?? null,
+        precioDesde: precios.length > 0 ? Math.min(...precios) : 0,
+        familiaOlfativa: p.familiasOlfativas[0]?.familia.nombre ?? null,
+      };
+    });
+  } catch (error) {
+    console.error("Error fetching featured products:", error);
+    return [];
+  }
 }
 
 const orgJsonLd = {

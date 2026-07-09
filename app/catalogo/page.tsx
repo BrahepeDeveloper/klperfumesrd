@@ -5,6 +5,8 @@ import ProductCard, { type ProductCardData } from "@/components/ProductCard";
 import CatalogSidebar from "@/components/CatalogSidebar";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Catálogo de Perfumes",
   description:
