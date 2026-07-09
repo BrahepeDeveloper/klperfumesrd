@@ -1,42 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-function CountUp({ target, duration = 2 }: { target: number; duration?: number }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !hasAnimated.current) {
-        hasAnimated.current = true;
-        const start = 0;
-        const increment = target / (duration * 60);
-        let current = start;
-
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            setCount(target);
-            clearInterval(timer);
-          } else {
-            setCount(Math.floor(current));
-          }
-        }, 1000 / 60);
-
-        return () => clearInterval(timer);
-      }
-    });
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [target, duration]);
-
-  return <div ref={ref}>{count.toLocaleString()}</div>;
-}
+import ImpactSection from "@/components/ImpactSection";
 
 export default function AboutPage() {
   return (
@@ -138,31 +104,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-32 px-6 border-t border-border bg-bg-secondary/30">
-        <div className="mx-auto max-w-5xl">
-          <div className="text-center mb-16">
-            <span className="text-accent-blue text-sm font-medium uppercase tracking-widest">Nuestro Impacto</span>
-            <h2 className="font-display text-4xl text-text-primary mt-3">Números que hablan</h2>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { icon: "👥", label: "Clientes satisfechos", value: 850 },
-              { icon: "📦", label: "Pedidos entregados", value: 3200 },
-              { icon: "⭐", label: "Marcas disponibles", value: 100 },
-              { icon: "🕒", label: "Años de experiencia", value: 3 },
-            ].map((stat, i) => (
-              <div key={i} className="glass-effect p-8 rounded-xl text-center space-y-3 hover:glow-teal transition-all duration-300">
-                <span className="text-4xl">{stat.icon}</span>
-                <div className="font-display text-4xl text-accent-teal">
-                  +<CountUp target={stat.value} />
-                </div>
-                <p className="text-text-secondary/70 text-sm">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ImpactSection />
 
       <section className="py-32 px-6 border-t border-border">
         <div className="mx-auto max-w-5xl">

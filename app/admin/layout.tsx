@@ -34,7 +34,7 @@ export default async function AdminLayout({
     <div className="flex min-h-screen bg-[#0f1117]">
       <AdminNav user={user} />
       <div className="flex-1 overflow-auto">
-        <main className="p-6 lg:p-8">{children}</main>
+        <main className="p-3 md:p-6 lg:p-8">{children}</main>
       </div>
     </div>
   );

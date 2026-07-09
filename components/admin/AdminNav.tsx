@@ -60,6 +60,7 @@ export default function AdminNav({
   const pathname = usePathname();
   const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   async function handleLogout() {
     setLoggingOut(true);
@@ -69,7 +70,45 @@ export default function AdminNav({
   }
 
   return (
-    <aside className="flex w-56 shrink-0 flex-col border-r border-white/5 bg-[#0a0c10]">
+    <>
+      {/* Mobile menu button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed top-4 left-4 z-50 md:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 transition border border-white/10"
+        aria-label="Toggle menu"
+      >
+        <svg
+          className="w-5 h-5 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+          />
+        </svg>
+      </button>
+
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={`
+        fixed md:relative
+        left-0 top-0 h-screen z-40
+        w-56 shrink-0 flex flex-col
+        border-r border-white/5 bg-[#0a0c10]
+        transform transition-transform duration-300 md:translate-x-0
+        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+      `}>
       {/* Brand */}
       <div className="px-5 py-5">
         <p className="font-display text-base text-white">
@@ -89,6 +128,7 @@ export default function AdminNav({
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => setIsOpen(false)}
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
                 active
                   ? "bg-bg-secondary/10 text-white"
@@ -115,5 +155,6 @@ export default function AdminNav({
         </button>
       </div>
     </aside>
+    </>
   );
 }
