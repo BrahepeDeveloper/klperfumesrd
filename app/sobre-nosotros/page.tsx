@@ -1,96 +1,160 @@
-import { waLink } from "@/lib/constants";
+"use client";
 
-export const metadata = {
-  title: "Nuestra Historia | KL Perfumes RD",
-  description:
-    "Conoce la historia de KL Perfumes RD, tu perfumería de lujo en República Dominicana. Fragancias 100% originales y decants de las mejores casas del mundo.",
-};
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function SobreNosotrosPage() {
+function CountUp({ target, duration = 2 }: { target: number; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !hasAnimated.current) {
+        hasAnimated.current = true;
+        const start = 0;
+        const increment = target / (duration * 60);
+        let current = start;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            setCount(target);
+            clearInterval(timer);
+          } else {
+            setCount(Math.floor(current));
+          }
+        }, 1000 / 60);
+
+        return () => clearInterval(timer);
+      }
+    });
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [target, duration]);
+
+  return <div ref={ref}>{count.toLocaleString()}</div>;
+}
+
+export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-4xl px-6 py-16 lg:px-10">
-      {/* Hero */}
-      <div className="mb-16 text-center">
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-emerald">
-          Quiénes Somos
-        </span>
-        <h1 className="font-display mt-3 text-5xl leading-tight text-ink">
-          Nuestra Historia
-        </h1>
-      </div>
-
-      {/* Content */}
-      <div className="prose-custom space-y-12">
-        <section className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:items-center">
-          <div className="aspect-square rounded-3xl bg-gradient-to-br from-brand-cyan/20 to-brand-emerald/20 flex items-center justify-center">
-            <span className="font-display text-7xl brand-gradient-text font-bold">KL</span>
-          </div>
-          <div className="space-y-4">
-            <h2 className="font-display text-3xl text-ink">La Pasión por las Fragancias</h2>
-            <p className="text-sm leading-relaxed text-ink-soft">
-              KL Perfumes RD nació de una profunda pasión por el arte de la perfumería. Somos una empresa
-              dominicana dedicada a acercar las mejores fragancias del mundo a los aficionados de la
-              República Dominicana, garantizando la autenticidad y calidad en cada producto.
-            </p>
-            <p className="text-sm leading-relaxed text-ink-soft">
-              Nuestro catálogo incluye perfumes originales de las casas más reconocidas del mundo, así
-              como decants para que puedas explorar y descubrir nuevas fragancias sin el compromiso de
-              una botella completa.
-            </p>
-          </div>
-        </section>
-
-        <div className="my-12 h-px bg-ink/8" />
-
-        <section className="grid gap-8 sm:grid-cols-3">
-          {[
-            {
-              icon: "🏆",
-              title: "100% Originales",
-              text: "Todos nuestros productos son 100% auténticos, adquiridos directamente de distribuidores oficiales.",
-            },
-            {
-              icon: "🚀",
-              title: "Envíos a Toda la RD",
-              text: "Llegamos a todos los rincones de la República Dominicana con envíos rápidos y seguros.",
-            },
-            {
-              icon: "💎",
-              title: "Decants Exclusivos",
-              text: "Ofrecemos decants en 3ML, 5ML y 10ML para que puedas explorar sin compromiso.",
-            },
-          ].map((item) => (
-            <div key={item.title} className="rounded-2xl bg-cream-dark/60 p-6 text-center">
-              <p className="text-4xl">{item.icon}</p>
-              <h3 className="font-display mt-4 text-lg text-ink">{item.title}</h3>
-              <p className="mt-2 text-xs leading-relaxed text-ink-soft">{item.text}</p>
+    <main className="bg-bg-primary">
+      <section className="min-h-screen flex items-center py-32 px-6">
+        <div className="mx-auto max-w-4xl">
+          <div className="space-y-6">
+            <div>
+              <span className="text-accent-blue text-sm font-medium uppercase tracking-widest">Nuestra Historia</span>
+              <h1 className="font-display text-5xl sm:text-6xl text-text-primary mt-3 leading-tight">
+                La pasión por las fragancias <span className="brand-gradient-text">te define</span>
+              </h1>
             </div>
-          ))}
-        </section>
+            <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
+              KL Perfumes RD nace con la misión de ofrecer perfumes 100% originales, decants y fragancias exclusivas de las mejores casas del mundo, brindando calidad, confianza y una excelente experiencia de compra a cada cliente.
+            </p>
+            <p className="text-base text-text-secondary/70 leading-relaxed max-w-2xl">
+              Creemos que cada fragancia cuenta una historia, y queremos ayudarte a encontrar la tuya. Desde Lattafa hasta Dior, desde Rasasi hasta Maison Alhambra — cada perfume en nuestro catálogo es seleccionado con cuidado.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <div className="my-12 h-px bg-ink/8" />
+      <section className="py-32 px-6 border-t border-border">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-square rounded-xl overflow-hidden glass-effect">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/20 to-accent-teal/20" />
+              <Image
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop"
+                alt="Brayam Herrera"
+                fill
+                className="object-cover"
+              />
+            </div>
 
-        <section className="text-center">
-          <h2 className="font-display text-3xl text-ink">¿Por qué elegirnos?</h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-ink-soft">
-            En KL Perfumes RD entendemos que elegir una fragancia es algo personal. Por eso ofrecemos
-            asesoría personalizada para ayudarte a encontrar el aroma que mejor te represente.
-            Contáctanos por WhatsApp y con gusto te orientamos.
-          </p>
-          <a
-            href={waLink("Hola KL Perfumes 👋 Me gustaría recibir asesoría para elegir una fragancia.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2.5 rounded-2xl bg-[#25D366] px-8 py-4 text-sm font-bold text-white transition hover:bg-[#20ba5a] soft-shadow"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.118 1.524 5.853L.057 23.177a.75.75 0 0 0 .923.899l5.487-1.442A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.638-.5-5.157-1.376l-.361-.214-3.742.982.998-3.643-.234-.374A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-            </svg>
-            Chatear con nosotros
-          </a>
-        </section>
-      </div>
-    </div>
+            <div className="space-y-6">
+              <div>
+                <span className="text-accent-teal text-sm font-medium uppercase tracking-widest">Fundador</span>
+                <h2 className="font-display text-4xl text-text-primary mt-2">Brayam Herrera</h2>
+              </div>
+              <p className="text-text-secondary leading-relaxed">
+                Fundada por Brayam Herrera, KL Perfumes RD busca combinar la pasión por las fragancias con la innovación tecnológica para ofrecer una experiencia de compra moderna, segura y confiable.
+              </p>
+              <p className="text-text-secondary/70 text-sm">
+                Con años de experiencia en la industria, Brayam ha construido una plataforma que pone al cliente en el centro, garantizando autenticidad y calidad en cada transacción.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 border-t border-border bg-bg-secondary/30">
+        <div className="mx-auto max-w-5xl">
+          <div className="text-center mb-16">
+            <span className="text-accent-blue text-sm font-medium uppercase tracking-widest">Nuestro Impacto</span>
+            <h2 className="font-display text-4xl text-text-primary mt-3">Números que hablan</h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { icon: "👥", label: "Clientes satisfechos", value: 850 },
+              { icon: "📦", label: "Pedidos entregados", value: 3200 },
+              { icon: "⭐", label: "Marcas disponibles", value: 100 },
+              { icon: "🕒", label: "Años de experiencia", value: 3 },
+            ].map((stat, i) => (
+              <div key={i} className="glass-effect p-8 rounded-xl text-center space-y-3 hover:glow-teal transition-all duration-300">
+                <span className="text-4xl">{stat.icon}</span>
+                <div className="font-display text-4xl text-accent-teal">
+                  +<CountUp target={stat.value} />
+                </div>
+                <p className="text-text-secondary/70 text-sm">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 border-t border-border">
+        <div className="mx-auto max-w-5xl">
+          <div className="text-center mb-16">
+            <span className="text-accent-teal text-sm font-medium uppercase tracking-widest">Nuestros Valores</span>
+            <h2 className="font-display text-4xl text-text-primary mt-3">Nuestra Filosofía</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { icon: "✓", title: "Originalidad", description: "Solo vendemos perfumes 100% originales verificados." },
+              { icon: "◆", title: "Calidad", description: "Trabajamos únicamente con productos auténticos de las mejores marcas." },
+              { icon: "★", title: "Confianza", description: "Miles de clientes satisfechos respaldan nuestro compromiso." },
+            ].map((value, i) => (
+              <div key={i} className="glass-effect p-8 rounded-xl space-y-4 hover:border-accent-blue transition-all duration-300 group cursor-pointer" style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}>
+                <div className="text-3xl text-accent-blue group-hover:scale-110 transition-transform duration-300">
+                  {value.icon}
+                </div>
+                <h3 className="font-display text-xl text-text-primary">{value.title}</h3>
+                <p className="text-text-secondary/70 leading-relaxed">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 border-t border-border">
+        <div className="mx-auto max-w-3xl text-center space-y-8">
+          <div>
+            <h2 className="font-display text-5xl text-text-primary mb-4">
+              Descubre la fragancia perfecta para ti
+            </h2>
+            <p className="text-text-secondary text-lg">
+              Explora nuestro catálogo de más de 650 fragancias originales y encuentra el aroma que te representa.
+            </p>
+          </div>
+          <Link href="/catalogo" className="btn-premium inline-block px-12 py-4 font-semibold text-white">
+            Explorar Catálogo
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }
