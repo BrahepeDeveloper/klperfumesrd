@@ -2,42 +2,6 @@ import Hero from "@/components/Hero";
 import TrustBadges from "@/components/TrustBadges";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
-
-async function getFeaturedProducts() {
-  try {
-    const { prisma } = await import("@/lib/prisma");
-    const productos = await prisma.producto.findMany({
-      where: { activo: true },
-      take: 8,
-      orderBy: { fechaCreacion: "desc" },
-      include: {
-        marca: true,
-        genero: true,
-        imagenes: { where: { esPrincipal: true }, take: 1 },
-        variantes: { where: { activo: true } },
-        familiasOlfativas: { include: { familia: true }, take: 1 },
-      },
-    });
-
-    return productos.map((p) => {
-      const precios = p.variantes.map((v) => Number(v.precio)).filter((n) => n > 0);
-      return {
-        slug: p.slug,
-        nombre: p.nombre,
-        marca: p.marca.nombre,
-        genero: p.genero.nombre,
-        imagenUrl: p.imagenes[0]?.urlWebp ?? null,
-        precioDesde: precios.length > 0 ? Math.min(...precios) : 0,
-        familiaOlfativa: p.familiasOlfativas[0]?.familia.nombre ?? null,
-      };
-    });
-  } catch (error) {
-    console.error("DB Error:", error);
-    return [];
-  }
-}
-
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -53,16 +17,7 @@ const orgJsonLd = {
   sameAs: [],
 };
 
-export default async function HomePage() {
-  let productos = [];
-  try {
-    productos = await getFeaturedProducts();
-  } catch (e) {
-    console.error("HomePage error:", e);
-  }
-
-  const ProductCard = (await import("@/components/ProductCard")).default;
-
+export default function HomePage() {
   return (
     <>
       <script
@@ -88,17 +43,17 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        {productos.length > 0 ? (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-            {productos.map((p: any) => (
-              <ProductCard key={p.slug} product={p} />
-            ))}
-          </div>
-        ) : (
-          <p className="text-center text-sm text-ink-soft">
-            No hay productos disponibles. Revisando conexión...
+        <div className="text-center py-12">
+          <p className="text-sm text-ink-soft mb-4">
+            Cargando productos...
           </p>
-        )}
+          <Link
+            href="/catalogo"
+            className="inline-block px-6 py-3 bg-brand-emerald text-cream rounded-lg font-medium"
+          >
+            Ir al Catálogo →
+          </Link>
+        </div>
       </section>
     </>
   );
