@@ -58,29 +58,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const headersList = await headers();
-  const pathname = headersList.get("x-pathname") ?? "";
-  const isAdmin = pathname.startsWith("/admin");
-
   return (
     <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
       <body>
-        {isAdmin ? (
-          children
-        ) : (
-          <CartProvider>
-            <Header />
-            <CartDrawer />
-            <main>{children}</main>
-            <Footer />
-            <ChatBot />
-          </CartProvider>
-        )}
+        <CartProvider>
+          <Header />
+          <CartDrawer />
+          <main>{children}</main>
+          <Footer />
+          <ChatBot />
+        </CartProvider>
       </body>
     </html>
   );
