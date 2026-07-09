@@ -1,0 +1,281 @@
+// ============================================================================
+// KL PERFUMES RD — Prisma Schema (PostgreSQL / Supabase)
+// Migrado desde SQL Server a PostgreSQL en schema "klperfumes"
+// ============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// LOOKUPS / FILTROS
+// ---------------------------------------------------------------------------
+
+model Marca {
+  marcaId   Int       @id @default(autoincrement()) @map("marcaId")
+  nombre    String    @unique @map("nombre")
+  slug      String    @unique @map("slug")
+  logoUrl   String?   @map("logoUrl")
+  activo    Boolean   @default(true) @map("activo")
+  productos Producto[]
+
+  @@map("marca")
+}
+
+model Genero {
+  generoId  Int       @id @default(autoincrement()) @map("generoId")
+  nombre    String    @unique @map("nombre")
+  slug      String    @unique @map("slug")
+  productos Producto[]
+
+  @@map("genero")
+}
+
+model Concentracion {
+  concentracionId Int       @id @default(autoincrement()) @map("concentracionId")
+  nombre          String    @unique @map("nombre")
+  abreviatura     String    @map("abreviatura")
+  productos       Producto[]
+
+  @@map("concentracion")
+}
+
+model FamiliaOlfativa {
+  familiaId Int                      @id @default(autoincrement()) @map("familiaId")
+  nombre    String                   @unique @map("nombre")
+  slug      String                   @unique @map("slug")
+  productos ProductoFamiliaOlfativa[]
+
+  @@map("familiaOlfativa")
+}
+
+model Temporada {
+  temporadaId Int                 @id @default(autoincrement()) @map("temporadaId")
+  nombre      String              @unique @map("nombre")
+  slug        String              @unique @map("slug")
+  productos   ProductoTemporada[]
+
+  @@map("temporada")
+}
+
+model Ocasion {
+  ocasionId Int               @id @default(autoincrement()) @map("ocasionId")
+  nombre    String            @unique @map("nombre")
+  slug      String            @unique @map("slug")
+  productos ProductoOcasion[]
+
+  @@map("ocasion")
+}
+
+model NotaOlfativa {
+  notaId    Int           @id @default(autoincrement()) @map("notaId")
+  nombre    String        @unique @map("nombre")
+  iconoUrl  String?       @map("iconoUrl")
+  productos ProductoNota[]
+
+  @@map("notaOlfativa")
+}
+
+model TipoVariante {
+  tipoVarianteId Int              @id @default(autoincrement()) @map("tipoVarianteId")
+  nombre         String           @unique @map("nombre")
+  mlEquivalente  Int?             @map("mlEquivalente")
+  orden          Int              @default(0) @map("orden")
+  variantes      VariantePrecio[]
+
+  @@map("tipoVariante")
+}
+
+// ---------------------------------------------------------------------------
+// CATÁLOGO PRINCIPAL
+// ---------------------------------------------------------------------------
+
+model Producto {
+  productoId          Int      @id @default(autoincrement()) @map("productoId")
+  nombre              String   @map("nombre")
+  slug                String   @unique @map("slug")
+  marcaId             Int      @map("marcaId")
+  generoId            Int      @map("generoId")
+  concentracionId     Int?     @map("concentracionId")
+  contenidoMlOriginal Int?     @map("contenidoMlOriginal")
+  descripcionCorta    String?  @map("descripcionCorta")
+  descripcionLarga    String?  @map("descripcionLarga")
+  sku                 String?  @map("sku")
+  destacado           Boolean  @default(false) @map("destacado")
+  activo              Boolean  @default(true) @map("activo")
+  fechaCreacion       DateTime @default(now()) @map("fechaCreacion")
+  fechaActualizacion  DateTime @default(now()) @updatedAt @map("fechaActualizacion")
+
+  marca         Marca          @relation(fields: [marcaId], references: [marcaId], onDelete: NoAction, onUpdate: NoAction)
+  genero        Genero         @relation(fields: [generoId], references: [generoId], onDelete: NoAction, onUpdate: NoAction)
+  concentracion Concentracion? @relation(fields: [concentracionId], references: [concentracionId], onDelete: SetNull, onUpdate: NoAction)
+
+  imagenes          ProductoImagen[]
+  variantes         VariantePrecio[]
+  notas             ProductoNota[]
+  familiasOlfativas ProductoFamiliaOlfativa[]
+  temporadas        ProductoTemporada[]
+  ocasiones         ProductoOcasion[]
+
+  @@index([marcaId])
+  @@index([generoId])
+  @@index([activo, destacado])
+  @@index([nombre])
+  @@map("producto")
+}
+
+model ProductoImagen {
+  imagenId         Int     @id @default(autoincrement()) @map("imagenId")
+  productoId       Int     @map("productoId")
+  urlWebp          String  @map("urlWebp")
+  textoAlternativo String? @map("textoAlternativo")
+  esPrincipal      Boolean @default(false) @map("esPrincipal")
+  orden            Int     @default(0) @map("orden")
+
+  producto Producto @relation(fields: [productoId], references: [productoId], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([productoId, orden])
+  @@map("productoImagen")
+}
+
+model VariantePrecio {
+  varianteId        Int      @id @default(autoincrement()) @map("varianteId")
+  productoId        Int      @map("productoId")
+  tipoVarianteId    Int      @map("tipoVarianteId")
+  precio            Decimal  @db.Decimal(10, 2) @map("precio")
+  precioComparacion Decimal? @db.Decimal(10, 2) @map("precioComparacion")
+  stock             Int      @default(0) @map("stock")
+  sku               String?  @map("sku")
+  activo            Boolean  @default(true) @map("activo")
+
+  producto     Producto     @relation(fields: [productoId], references: [productoId], onDelete: Cascade, onUpdate: NoAction)
+  tipoVariante TipoVariante @relation(fields: [tipoVarianteId], references: [tipoVarianteId], onDelete: NoAction, onUpdate: NoAction)
+  detallePedidos DetallePedido[]
+
+  @@unique([productoId, tipoVarianteId])
+  @@index([productoId])
+  @@map("variantePrecio")
+}
+
+model ProductoNota {
+  productoId Int    @map("productoId")
+  notaId     Int    @map("notaId")
+  posicion   String @map("posicion")
+  orden      Int    @default(0) @map("orden")
+
+  producto Producto     @relation(fields: [productoId], references: [productoId], onDelete: Cascade, onUpdate: NoAction)
+  nota     NotaOlfativa @relation(fields: [notaId], references: [notaId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([productoId, notaId, posicion])
+  @@index([notaId])
+  @@map("productoNota")
+}
+
+// ---------------------------------------------------------------------------
+// TABLAS PUENTE DE FILTROS
+// ---------------------------------------------------------------------------
+
+model ProductoFamiliaOlfativa {
+  productoId Int @map("productoId")
+  familiaId  Int @map("familiaId")
+
+  producto Producto        @relation(fields: [productoId], references: [productoId], onDelete: Cascade, onUpdate: NoAction)
+  familia  FamiliaOlfativa @relation(fields: [familiaId], references: [familiaId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([productoId, familiaId])
+  @@index([familiaId])
+  @@map("productoFamiliaOlfativa")
+}
+
+model ProductoTemporada {
+  productoId  Int @map("productoId")
+  temporadaId Int @map("temporadaId")
+
+  producto  Producto  @relation(fields: [productoId], references: [productoId], onDelete: Cascade, onUpdate: NoAction)
+  temporada Temporada @relation(fields: [temporadaId], references: [temporadaId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([productoId, temporadaId])
+  @@index([temporadaId])
+  @@map("productoTemporada")
+}
+
+model ProductoOcasion {
+  productoId Int @map("productoId")
+  ocasionId  Int @map("ocasionId")
+
+  producto Producto @relation(fields: [productoId], references: [productoId], onDelete: Cascade, onUpdate: NoAction)
+  ocasion  Ocasion  @relation(fields: [ocasionId], references: [ocasionId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([productoId, ocasionId])
+  @@index([ocasionId])
+  @@map("productoOcasion")
+}
+
+// ---------------------------------------------------------------------------
+// BACKOFFICE
+// ---------------------------------------------------------------------------
+
+model Usuario {
+  usuarioId    Int       @id @default(autoincrement()) @map("usuarioId")
+  nombre       String    @map("nombre")
+  email        String    @unique @map("email")
+  passwordHash String    @map("passwordHash")
+  rol          String    @default("Admin") @map("rol")
+  activo       Boolean   @default(true) @map("activo")
+  ultimoAcceso DateTime? @map("ultimoAcceso")
+  fechaCreacion DateTime @default(now()) @map("fechaCreacion")
+
+  @@map("usuario")
+}
+
+// ---------------------------------------------------------------------------
+// CLIENTES / PEDIDOS
+// ---------------------------------------------------------------------------
+
+model Cliente {
+  clienteId     Int      @id @default(autoincrement()) @map("clienteId")
+  nombre        String   @map("nombre")
+  email         String   @unique @map("email")
+  telefono      String?  @map("telefono")
+  fechaCreacion DateTime @default(now()) @map("fechaCreacion")
+  pedidos       Pedido[]
+
+  @@map("cliente")
+}
+
+model Pedido {
+  pedidoId       Int      @id @default(autoincrement()) @map("pedidoId")
+  clienteId      Int?     @map("clienteId")
+  estado         String   @default("Pendiente") @map("estado")
+  total          Decimal  @default(0) @db.Decimal(10, 2) @map("total")
+  metodoPago     String?  @map("metodoPago")
+  direccionEnvio String?  @map("direccionEnvio")
+  fechaCreacion  DateTime @default(now()) @map("fechaCreacion")
+
+  cliente  Cliente?        @relation(fields: [clienteId], references: [clienteId], onDelete: SetNull, onUpdate: NoAction)
+  detalles DetallePedido[]
+
+  @@index([clienteId])
+  @@index([estado])
+  @@map("pedido")
+}
+
+model DetallePedido {
+  detalleId      Int     @id @default(autoincrement()) @map("detalleId")
+  pedidoId       Int     @map("pedidoId")
+  varianteId     Int     @map("varianteId")
+  cantidad       Int     @map("cantidad")
+  precioUnitario Decimal @db.Decimal(10, 2) @map("precioUnitario")
+  subtotal       Decimal @db.Decimal(10, 2) @map("subtotal")
+
+  pedido   Pedido         @relation(fields: [pedidoId], references: [pedidoId], onDelete: Cascade, onUpdate: NoAction)
+  variante VariantePrecio @relation(fields: [varianteId], references: [varianteId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([pedidoId])
+  @@map("detallePedido")
+}
