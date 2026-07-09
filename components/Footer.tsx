@@ -3,7 +3,7 @@ import { waLink, STORE_EMAIL, STORE_PHONE_DISPLAY } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-black/5 bg-ink text-cream">
+    <footer className="border-t border-black/5 bg-bg-secondary text-cream">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:px-10">
         <div>
           <span className="font-display text-lg">

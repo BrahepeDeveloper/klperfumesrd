@@ -26,7 +26,7 @@ export default async function AdminMarcasPage() {
         </p>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02]">
+      <div className="overflow-hidden rounded-2xl border border-white/5 bg-bg-secondary/[0.02]">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-white/5">

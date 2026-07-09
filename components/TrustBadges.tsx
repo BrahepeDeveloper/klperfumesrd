@@ -25,17 +25,17 @@ const BADGES = [
 
 export default function TrustBadges() {
   return (
-    <section className="border-y border-black/5 bg-white">
+    <section className="border-y border-black/5 bg-bg-secondary">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-12 sm:grid-cols-4 lg:px-10">
         {BADGES.map((b) => (
           <div key={b.title} className="flex flex-col items-center text-center sm:items-start sm:text-left">
-            <div className="mb-3 grid h-11 w-11 place-items-center rounded-full bg-cream text-ink">
+            <div className="mb-3 grid h-11 w-11 place-items-center rounded-full bg-bg-primary text-text-primary">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                 {b.icon}
               </svg>
             </div>
-            <h3 className="text-sm font-semibold text-ink">{b.title}</h3>
-            <p className="mt-1 text-xs leading-relaxed text-ink-soft">{b.desc}</p>
+            <h3 className="text-sm font-semibold text-text-primary">{b.title}</h3>
+            <p className="mt-1 text-xs leading-relaxed text-text-primary-soft">{b.desc}</p>
           </div>
         ))}
       </div>

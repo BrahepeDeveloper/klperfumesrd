@@ -17,7 +17,7 @@ function estadoBadge(estado: string) {
     Entregado:   "bg-emerald-500/10 text-emerald-400",
     Cancelado:   "bg-red-500/10 text-red-400",
   };
-  return map[estado] ?? "bg-white/10 text-white/50";
+  return map[estado] ?? "bg-bg-secondary/10 text-white/50";
 }
 
 export default async function AdminPedidosPage({ searchParams }: { searchParams: SearchParams }) {
@@ -73,14 +73,14 @@ export default async function AdminPedidosPage({ searchParams }: { searchParams:
               href={e === "Todos" ? "/admin/pedidos" : `/admin/pedidos?estado=${e}`}
               className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
                 active
-                  ? "border-brand-cyan bg-brand-cyan/10 text-brand-cyan"
+                  ? "border-brand-cyan bg-brand-cyan/10 text-accent-blue"
                   : "border-white/10 text-white/50 hover:border-white/20 hover:text-white"
               }`}
             >
               {e}
               {count > 0 && (
                 <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-bold ${
-                  active ? "bg-brand-cyan/20" : "bg-white/10"
+                  active ? "bg-brand-cyan/20" : "bg-bg-secondary/10"
                 }`}>
                   {count}
                 </span>
@@ -91,7 +91,7 @@ export default async function AdminPedidosPage({ searchParams }: { searchParams:
       </div>
 
       {/* Table */}
-      <div className="overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02]">
+      <div className="overflow-hidden rounded-2xl border border-white/5 bg-bg-secondary/[0.02]">
         {pedidos.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <p className="text-4xl">📦</p>
@@ -115,7 +115,7 @@ export default async function AdminPedidosPage({ searchParams }: { searchParams:
             </thead>
             <tbody className="divide-y divide-white/5">
               {pedidos.map((p) => (
-                <tr key={p.pedidoId} className="transition hover:bg-white/[0.02]">
+                <tr key={p.pedidoId} className="transition hover:bg-bg-secondary/[0.02]">
                   <td className="px-4 py-3 font-mono text-xs text-white/40">#{p.pedidoId}</td>
                   <td className="px-4 py-3">
                     <p className="text-sm font-medium text-white/90">

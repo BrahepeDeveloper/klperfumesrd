@@ -109,11 +109,11 @@ export default async function AdminProductosPage({
             name="q"
             defaultValue={q}
             placeholder="Buscar por nombre o marca..."
-            className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:border-brand-cyan"
+            className="rounded-xl border border-white/10 bg-bg-secondary/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:border-brand-cyan"
           />
           <button
             type="submit"
-            className="rounded-xl bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15"
+            className="rounded-xl bg-bg-secondary/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-bg-secondary/15"
           >
             Buscar
           </button>
@@ -134,7 +134,7 @@ export default async function AdminProductosPage({
               href={buildUrl("/admin/productos", { filter: f.value, q })}
               className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
                 filter === f.value
-                  ? "border-brand-cyan bg-brand-cyan/10 text-brand-cyan"
+                  ? "border-brand-cyan bg-brand-cyan/10 text-accent-blue"
                   : "border-white/10 text-white/50 hover:border-white/20 hover:text-white"
               }`}
             >
@@ -145,7 +145,7 @@ export default async function AdminProductosPage({
       </div>
 
       {/* Table */}
-      <div className="overflow-hidden rounded-2xl border border-white/5 bg-white/3">
+      <div className="overflow-hidden rounded-2xl border border-white/5 bg-bg-secondary/3">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-white/5 text-left">

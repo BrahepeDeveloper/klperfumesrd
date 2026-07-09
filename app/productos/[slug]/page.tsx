@@ -144,26 +144,26 @@ export default async function ProductoPage({ params }: Props) {
       />
     <div className="mx-auto max-w-7xl px-4 py-10 lg:px-10">
       {/* Breadcrumb */}
-      <nav className="mb-8 flex items-center gap-2 text-xs text-ink-soft">
-        <Link href="/" className="hover:text-ink">Inicio</Link>
+      <nav className="mb-8 flex items-center gap-2 text-xs text-text-primary-soft">
+        <Link href="/" className="hover:text-text-primary">Inicio</Link>
         <span>/</span>
-        <Link href="/catalogo" className="hover:text-ink">Catálogo</Link>
+        <Link href="/catalogo" className="hover:text-text-primary">Catálogo</Link>
         <span>/</span>
         <Link
           href={`/catalogo?genero=${product.genero.slug}`}
-          className="hover:text-ink"
+          className="hover:text-text-primary"
         >
           {product.genero.nombre}
         </Link>
         <span>/</span>
-        <span className="text-ink line-clamp-1">{product.nombre}</span>
+        <span className="text-text-primary line-clamp-1">{product.nombre}</span>
       </nav>
 
       <div className="lg:grid lg:grid-cols-[1fr_480px] lg:gap-14 xl:grid-cols-[1fr_520px]">
         {/* ── Left: Images ── */}
         <div className="mb-10 lg:mb-0">
           {/* Main image */}
-          <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-cream-dark soft-shadow">
+          <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-bg-primary-dark soft-shadow">
             {mainImage ? (
               <Image
                 src={mainImage.urlWebp}
@@ -174,7 +174,7 @@ export default async function ProductoPage({ params }: Props) {
                 className="object-cover"
               />
             ) : (
-              <div className="grid h-full w-full place-items-center text-sm text-ink-soft">
+              <div className="grid h-full w-full place-items-center text-sm text-text-primary-soft">
                 Imagen no disponible
               </div>
             )}
@@ -186,7 +186,7 @@ export default async function ProductoPage({ params }: Props) {
               {otherImages.slice(0, 5).map((img) => (
                 <div
                   key={img.imagenId}
-                  className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-cream-dark"
+                  className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-bg-primary-dark"
                 >
                   <Image
                     src={img.urlWebp}
@@ -206,18 +206,18 @@ export default async function ProductoPage({ params }: Props) {
         <div>
           {/* Badges row */}
           <div className="mb-4 flex flex-wrap gap-2">
-            <span className="rounded-full border border-ink/10 px-3 py-1 text-xs font-semibold text-ink-soft">
+            <span className="rounded-full border border-ink/10 px-3 py-1 text-xs font-semibold text-text-primary-soft">
               {product.genero.nombre}
             </span>
             {product.concentracion && (
-              <span className="rounded-full border border-ink/10 px-3 py-1 text-xs font-semibold text-ink-soft">
+              <span className="rounded-full border border-ink/10 px-3 py-1 text-xs font-semibold text-text-primary-soft">
                 {product.concentracion.nombre}
               </span>
             )}
             {families.map((f) => (
               <span
                 key={f}
-                className="rounded-full bg-brand-emerald/10 px-3 py-1 text-xs font-semibold text-brand-emerald"
+                className="rounded-full bg-brand-emerald/10 px-3 py-1 text-xs font-semibold text-accent-teal"
               >
                 {f}
               </span>
@@ -225,16 +225,16 @@ export default async function ProductoPage({ params }: Props) {
           </div>
 
           {/* Brand + Name */}
-          <p className="text-xs font-bold uppercase tracking-widest text-ink-soft">
+          <p className="text-xs font-bold uppercase tracking-widest text-text-primary-soft">
             {product.marca.nombre}
           </p>
-          <h1 className="font-display mt-1 text-4xl leading-tight text-ink">
+          <h1 className="font-display mt-1 text-4xl leading-tight text-text-primary">
             {product.nombre}
           </h1>
 
           {/* Description */}
           {product.descripcionCorta && (
-            <p className="mt-4 text-sm leading-relaxed text-ink-soft">
+            <p className="mt-4 text-sm leading-relaxed text-text-primary-soft">
               {product.descripcionCorta}
             </p>
           )}
@@ -252,16 +252,16 @@ export default async function ProductoPage({ params }: Props) {
 
           {/* Tags */}
           {(seasons.length > 0 || occasions.length > 0) && (
-            <div className="mt-8 space-y-3 rounded-2xl bg-cream-dark/60 p-4">
+            <div className="mt-8 space-y-3 rounded-2xl bg-bg-primary-dark/60 p-4">
               {seasons.length > 0 && (
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-ink-soft">
+                  <span className="text-xs font-bold uppercase tracking-wider text-text-primary-soft">
                     Temporada
                   </span>
                   {seasons.map((s) => (
                     <span
                       key={s}
-                      className="rounded-full border border-ink/10 px-2.5 py-0.5 text-xs text-ink"
+                      className="rounded-full border border-ink/10 px-2.5 py-0.5 text-xs text-text-primary"
                     >
                       {s}
                     </span>
@@ -270,13 +270,13 @@ export default async function ProductoPage({ params }: Props) {
               )}
               {occasions.length > 0 && (
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-ink-soft">
+                  <span className="text-xs font-bold uppercase tracking-wider text-text-primary-soft">
                     Ocasión
                   </span>
                   {occasions.map((o) => (
                     <span
                       key={o}
-                      className="rounded-full border border-ink/10 px-2.5 py-0.5 text-xs text-ink"
+                      className="rounded-full border border-ink/10 px-2.5 py-0.5 text-xs text-text-primary"
                     >
                       {o}
                     </span>
@@ -289,7 +289,7 @@ export default async function ProductoPage({ params }: Props) {
           {/* Olfactive pyramid */}
           {Object.keys(notesByPosition).length > 0 && (
             <div className="mt-8">
-              <h2 className="font-display mb-4 text-lg text-ink">
+              <h2 className="font-display mb-4 text-lg text-text-primary">
                 Pirámide Olfativa
               </h2>
               <div className="space-y-3">
@@ -303,10 +303,10 @@ export default async function ProductoPage({ params }: Props) {
                   };
                   return (
                     <div key={pos} className="flex gap-3">
-                      <span className="mt-0.5 w-28 shrink-0 text-xs font-bold uppercase tracking-wider text-ink-soft">
+                      <span className="mt-0.5 w-28 shrink-0 text-xs font-bold uppercase tracking-wider text-text-primary-soft">
                         {labels[pos]}
                       </span>
-                      <p className="text-sm text-ink">{notes.join(", ")}</p>
+                      <p className="text-sm text-text-primary">{notes.join(", ")}</p>
                     </div>
                   );
                 })}
@@ -323,10 +323,10 @@ export default async function ProductoPage({ params }: Props) {
             ].map((b) => (
               <div
                 key={b.text}
-                className="flex flex-col items-center gap-1 rounded-xl bg-cream-dark/60 p-3 text-center"
+                className="flex flex-col items-center gap-1 rounded-xl bg-bg-primary-dark/60 p-3 text-center"
               >
                 <span className="text-lg">{b.icon}</span>
-                <span className="text-[10px] font-semibold text-ink-soft">
+                <span className="text-[10px] font-semibold text-text-primary-soft">
                   {b.text}
                 </span>
               </div>
@@ -338,10 +338,10 @@ export default async function ProductoPage({ params }: Props) {
       {/* Long description */}
       {product.descripcionLarga && (
         <section className="mt-16 max-w-2xl">
-          <h2 className="font-display mb-4 text-2xl text-ink">
+          <h2 className="font-display mb-4 text-2xl text-text-primary">
             Sobre esta fragancia
           </h2>
-          <p className="whitespace-pre-line text-sm leading-relaxed text-ink-soft">
+          <p className="whitespace-pre-line text-sm leading-relaxed text-text-primary-soft">
             {product.descripcionLarga}
           </p>
         </section>

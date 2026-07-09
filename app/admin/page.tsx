@@ -66,7 +66,7 @@ export default async function AdminDashboard() {
           <Link
             key={s.label}
             href={s.href}
-            className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/5 p-5 transition hover:bg-white/8"
+            className="group relative overflow-hidden rounded-2xl border border-white/5 bg-bg-secondary/5 p-5 transition hover:bg-bg-secondary/8"
           >
             <div
               className={`absolute inset-0 bg-gradient-to-br ${s.color} opacity-40`}
@@ -92,7 +92,7 @@ export default async function AdminDashboard() {
         <div className="mt-3 flex flex-wrap gap-3">
           <Link
             href="/admin/productos/nuevo"
-            className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/8 px-4 py-2.5 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+            className="flex items-center gap-2 rounded-xl bg-bg-secondary/5 border border-white/8 px-4 py-2.5 text-sm font-semibold text-white/80 transition hover:bg-bg-secondary/10 hover:text-white"
           >
             <svg
               width="16"
@@ -116,7 +116,7 @@ export default async function AdminDashboard() {
           <Link
             href="/catalogo"
             target="_blank"
-            className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/8 px-4 py-2.5 text-sm font-semibold text-white/50 transition hover:text-white"
+            className="flex items-center gap-2 rounded-xl bg-bg-secondary/5 border border-white/8 px-4 py-2.5 text-sm font-semibold text-white/50 transition hover:text-white"
           >
             <svg
               width="14"

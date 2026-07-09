@@ -103,7 +103,7 @@ export default function ChatBot() {
                   className={`max-w-[80%] rounded-2xl px-3 py-2 text-sm leading-relaxed ${
                     m.role === "user"
                       ? "rounded-br-sm bg-gradient-to-br from-[#00d4ff]/20 to-[#7c3aed]/20 text-white"
-                      : "rounded-bl-sm bg-white/5 text-white/90"
+                      : "rounded-bl-sm bg-bg-secondary/5 text-white/90"
                   }`}
                 >
                   {m.content}
@@ -115,11 +115,11 @@ export default function ChatBot() {
                 <div className="mr-2 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#00d4ff] to-[#7c3aed] text-[10px] font-bold text-white">
                   K
                 </div>
-                <div className="rounded-2xl rounded-bl-sm bg-white/5 px-4 py-2.5">
+                <div className="rounded-2xl rounded-bl-sm bg-bg-secondary/5 px-4 py-2.5">
                   <span className="inline-flex gap-1">
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-white/40 [animation-delay:0ms]" />
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-white/40 [animation-delay:150ms]" />
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-white/40 [animation-delay:300ms]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-bg-secondary/40 [animation-delay:0ms]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-bg-secondary/40 [animation-delay:150ms]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-bg-secondary/40 [animation-delay:300ms]" />
                   </span>
                 </div>
               </div>
@@ -142,7 +142,7 @@ export default function ChatBot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Escribe tu consulta..."
-                className="flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/25 outline-none focus:border-brand-cyan"
+                className="flex-1 rounded-xl border border-white/10 bg-bg-secondary/5 px-3 py-2 text-sm text-white placeholder-white/25 outline-none focus:border-brand-cyan"
                 disabled={loading}
               />
               <button

@@ -124,12 +124,12 @@ export default function NuevoProductoForm({
   const selectClass =
     "w-full rounded-xl border border-white/10 bg-[#0f1117] px-3 py-2.5 text-sm text-white outline-none focus:border-brand-cyan";
   const inputClass =
-    "w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-brand-cyan";
+    "w-full rounded-xl border border-white/10 bg-bg-secondary/5 px-3 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-brand-cyan";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Basic info */}
-      <section className="rounded-2xl border border-white/5 bg-white/[0.02] p-5 space-y-4">
+      <section className="rounded-2xl border border-white/5 bg-bg-secondary/[0.02] p-5 space-y-4">
         <h2 className="text-[11px] font-bold uppercase tracking-wider text-white/30">
           Información General
         </h2>
@@ -213,7 +213,7 @@ export default function NuevoProductoForm({
             rows={3}
             maxLength={500}
             placeholder="Descripción breve del perfume..."
-            className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-brand-cyan"
+            className="w-full resize-none rounded-xl border border-white/10 bg-bg-secondary/5 px-3 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-brand-cyan"
           />
           <p className="mt-1 text-right text-[10px] text-white/20">
             {descripcionCorta.length}/500
@@ -222,7 +222,7 @@ export default function NuevoProductoForm({
       </section>
 
       {/* Variants */}
-      <section className="rounded-2xl border border-white/5 bg-white/[0.02] p-5 space-y-4">
+      <section className="rounded-2xl border border-white/5 bg-bg-secondary/[0.02] p-5 space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-[11px] font-bold uppercase tracking-wider text-white/30">
             Variantes y Precios
@@ -257,7 +257,7 @@ export default function NuevoProductoForm({
           {variantes.map((v, idx) => (
             <div
               key={idx}
-              className="rounded-xl border border-white/5 bg-white/[0.02] p-4"
+              className="rounded-xl border border-white/5 bg-bg-secondary/[0.02] p-4"
             >
               <div className="mb-3 flex items-center justify-between gap-3">
                 <select
@@ -299,7 +299,7 @@ export default function NuevoProductoForm({
                     onChange={(e) => updateVariante(idx, "precio", e.target.value)}
                     required
                     placeholder="0.00"
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/20 outline-none focus:border-brand-cyan"
+                    className="w-full rounded-lg border border-white/10 bg-bg-secondary/5 px-3 py-2 text-sm text-white placeholder-white/20 outline-none focus:border-brand-cyan"
                   />
                 </div>
                 <div>
@@ -315,7 +315,7 @@ export default function NuevoProductoForm({
                       updateVariante(idx, "precioComparacion", e.target.value)
                     }
                     placeholder="Opcional"
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/70 placeholder-white/20 outline-none focus:border-brand-cyan"
+                    className="w-full rounded-lg border border-white/10 bg-bg-secondary/5 px-3 py-2 text-sm text-white/70 placeholder-white/20 outline-none focus:border-brand-cyan"
                   />
                 </div>
                 <div>
@@ -327,7 +327,7 @@ export default function NuevoProductoForm({
                     min="0"
                     value={v.stock}
                     onChange={(e) => updateVariante(idx, "stock", e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none focus:border-brand-cyan"
+                    className="w-full rounded-lg border border-white/10 bg-bg-secondary/5 px-3 py-2 text-sm text-white outline-none focus:border-brand-cyan"
                   />
                 </div>
               </div>

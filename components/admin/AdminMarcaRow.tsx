@@ -51,7 +51,7 @@ export default function AdminMarcaRow({ marca }: { marca: Marca }) {
   }
 
   return (
-    <tr className="group border-b border-white/5 last:border-0 transition hover:bg-white/[0.02]">
+    <tr className="group border-b border-white/5 last:border-0 transition hover:bg-bg-secondary/[0.02]">
       {/* Name */}
       <td className="px-4 py-3">
         {editing ? (
@@ -63,7 +63,7 @@ export default function AdminMarcaRow({ marca }: { marca: Marca }) {
               if (e.key === "Enter") handleSave();
               if (e.key === "Escape") handleCancel();
             }}
-            className="w-full max-w-xs rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white outline-none focus:border-brand-cyan"
+            className="w-full max-w-xs rounded-lg border border-white/10 bg-bg-secondary/5 px-3 py-1.5 text-sm text-white outline-none focus:border-brand-cyan"
             autoFocus
           />
         ) : (

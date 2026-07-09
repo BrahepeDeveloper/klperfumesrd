@@ -151,13 +151,13 @@ export default async function CatalogoPage({
     <div className="mx-auto max-w-7xl px-4 py-10 lg:px-10">
       {/* Page title */}
       <div className="mb-8">
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-emerald">
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-teal">
           Colección Completa
         </span>
-        <h1 className="font-display mt-2 text-4xl text-ink">
+        <h1 className="font-display mt-2 text-4xl text-text-primary">
           Catálogo de Fragancias
         </h1>
-        <p className="mt-2 text-sm text-ink-soft">
+        <p className="mt-2 text-sm text-text-primary-soft">
           {total.toLocaleString("es-DO")} productos disponibles
         </p>
       </div>
@@ -168,7 +168,7 @@ export default async function CatalogoPage({
           {active.genero && (
             <Link
               href={buildUrl({ ...active, genero: undefined })}
-              className="flex items-center gap-1.5 rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white"
+              className="flex items-center gap-1.5 rounded-full bg-bg-secondary px-3 py-1 text-xs font-semibold text-white"
             >
               {filterOptions.generos.find((g) => g.slug === active.genero)?.nombre}
               <span className="ml-1 opacity-60">✕</span>
@@ -177,7 +177,7 @@ export default async function CatalogoPage({
           {active.familia && (
             <Link
               href={buildUrl({ ...active, familia: undefined })}
-              className="flex items-center gap-1.5 rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white"
+              className="flex items-center gap-1.5 rounded-full bg-bg-secondary px-3 py-1 text-xs font-semibold text-white"
             >
               {filterOptions.familias.find((f) => f.slug === active.familia)?.nombre}
               <span className="ml-1 opacity-60">✕</span>
@@ -186,7 +186,7 @@ export default async function CatalogoPage({
           {active.temporada && (
             <Link
               href={buildUrl({ ...active, temporada: undefined })}
-              className="flex items-center gap-1.5 rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white"
+              className="flex items-center gap-1.5 rounded-full bg-bg-secondary px-3 py-1 text-xs font-semibold text-white"
             >
               {filterOptions.temporadas.find((t) => t.slug === active.temporada)?.nombre}
               <span className="ml-1 opacity-60">✕</span>
@@ -195,7 +195,7 @@ export default async function CatalogoPage({
           {active.ocasion && (
             <Link
               href={buildUrl({ ...active, ocasion: undefined })}
-              className="flex items-center gap-1.5 rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white"
+              className="flex items-center gap-1.5 rounded-full bg-bg-secondary px-3 py-1 text-xs font-semibold text-white"
             >
               {filterOptions.ocasiones.find((o) => o.slug === active.ocasion)?.nombre}
               <span className="ml-1 opacity-60">✕</span>
@@ -204,7 +204,7 @@ export default async function CatalogoPage({
           {active.marca && (
             <Link
               href={buildUrl({ ...active, marca: undefined })}
-              className="flex items-center gap-1.5 rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white"
+              className="flex items-center gap-1.5 rounded-full bg-bg-secondary px-3 py-1 text-xs font-semibold text-white"
             >
               {filterOptions.marcas.find((m) => m.slug === active.marca)?.nombre}
               <span className="ml-1 opacity-60">✕</span>
@@ -213,7 +213,7 @@ export default async function CatalogoPage({
           {hasPrecio && (
             <Link
               href={buildUrl({ ...active, precioMin: undefined, precioMax: undefined })}
-              className="flex items-center gap-1.5 rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white"
+              className="flex items-center gap-1.5 rounded-full bg-bg-secondary px-3 py-1 text-xs font-semibold text-white"
             >
               {active.precioMin && active.precioMax
                 ? `RD$${Number(active.precioMin).toLocaleString("es-DO")} – RD$${Number(active.precioMax).toLocaleString("es-DO")}`
@@ -225,7 +225,7 @@ export default async function CatalogoPage({
           )}
           <Link
             href="/catalogo"
-            className="text-xs font-semibold text-ink-soft underline underline-offset-4"
+            className="text-xs font-semibold text-text-primary-soft underline underline-offset-4"
           >
             Limpiar todo
           </Link>
@@ -242,14 +242,14 @@ export default async function CatalogoPage({
 
         <main className="min-w-0">
           {cards.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-2xl bg-cream py-24 text-center">
-              <p className="font-display text-xl text-ink">Sin resultados</p>
-              <p className="mt-2 text-sm text-ink-soft">
+            <div className="flex flex-col items-center justify-center rounded-2xl bg-bg-primary py-24 text-center">
+              <p className="font-display text-xl text-text-primary">Sin resultados</p>
+              <p className="mt-2 text-sm text-text-primary-soft">
                 Prueba con otros filtros o amplía tu búsqueda.
               </p>
               <Link
                 href="/catalogo"
-                className="mt-6 rounded-lg border border-ink/10 px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white"
+                className="mt-6 rounded-lg border border-ink/10 px-5 py-2.5 text-sm font-semibold text-text-primary transition hover:bg-bg-secondary hover:text-white"
               >
                 Ver todo el catálogo
               </Link>
@@ -267,27 +267,27 @@ export default async function CatalogoPage({
                   {page > 1 ? (
                     <Link
                       href={buildUrl(active, page - 1)}
-                      className="rounded-lg border border-ink/10 px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white"
+                      className="rounded-lg border border-ink/10 px-5 py-2.5 text-sm font-semibold text-text-primary transition hover:bg-bg-secondary hover:text-white"
                     >
                       ← Anterior
                     </Link>
                   ) : (
-                    <span className="rounded-lg border border-ink/5 px-5 py-2.5 text-sm font-semibold text-ink-soft/40 cursor-not-allowed select-none">
+                    <span className="rounded-lg border border-ink/5 px-5 py-2.5 text-sm font-semibold text-text-primary-soft/40 cursor-not-allowed select-none">
                       ← Anterior
                     </span>
                   )}
-                  <span className="text-sm text-ink-soft">
+                  <span className="text-sm text-text-primary-soft">
                     {page} / {totalPages}
                   </span>
                   {page < totalPages ? (
                     <Link
                       href={buildUrl(active, page + 1)}
-                      className="rounded-lg border border-ink/10 px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white"
+                      className="rounded-lg border border-ink/10 px-5 py-2.5 text-sm font-semibold text-text-primary transition hover:bg-bg-secondary hover:text-white"
                     >
                       Siguiente →
                     </Link>
                   ) : (
-                    <span className="rounded-lg border border-ink/5 px-5 py-2.5 text-sm font-semibold text-ink-soft/40 cursor-not-allowed select-none">
+                    <span className="rounded-lg border border-ink/5 px-5 py-2.5 text-sm font-semibold text-text-primary-soft/40 cursor-not-allowed select-none">
                       Siguiente →
                     </span>
                   )}

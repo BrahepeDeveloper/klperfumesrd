@@ -114,7 +114,7 @@ export default function AdminProductForm({
   return (
     <div className="space-y-8">
       {/* Status row */}
-      <section className="flex flex-wrap gap-6 rounded-2xl border border-white/5 bg-white/3 p-5">
+      <section className="flex flex-wrap gap-6 rounded-2xl border border-white/5 bg-bg-secondary/3 p-5">
         <label className="flex items-center gap-3 cursor-pointer">
           <input
             type="checkbox"
@@ -136,7 +136,7 @@ export default function AdminProductForm({
       </section>
 
       {/* Basic info */}
-      <section className="rounded-2xl border border-white/5 bg-white/3 p-5 space-y-4">
+      <section className="rounded-2xl border border-white/5 bg-bg-secondary/3 p-5 space-y-4">
         <h2 className="text-xs font-bold uppercase tracking-wider text-white/40">
           Información General
         </h2>
@@ -147,7 +147,7 @@ export default function AdminProductForm({
             <select
               value={generoId}
               onChange={(e) => setGeneroId(Number(e.target.value))}
-              className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none focus:border-brand-cyan"
+              className="w-full rounded-xl border border-white/10 bg-bg-secondary/5 px-3 py-2.5 text-sm text-white outline-none focus:border-brand-cyan"
             >
               {options.generos.map((g) => (
                 <option key={g.generoId} value={g.generoId} className="bg-[#1a1d25]">
@@ -164,7 +164,7 @@ export default function AdminProductForm({
               onChange={(e) =>
                 setConcentracionId(e.target.value ? Number(e.target.value) : null)
               }
-              className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none focus:border-brand-cyan"
+              className="w-full rounded-xl border border-white/10 bg-bg-secondary/5 px-3 py-2.5 text-sm text-white outline-none focus:border-brand-cyan"
             >
               <option value="" className="bg-[#1a1d25]">Sin especificar</option>
               {options.concentraciones.map((c) => (
@@ -185,7 +185,7 @@ export default function AdminProductForm({
             onChange={(e) => setDescripcionCorta(e.target.value)}
             rows={3}
             maxLength={500}
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-brand-cyan resize-none"
+            className="w-full rounded-xl border border-white/10 bg-bg-secondary/5 px-3 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-brand-cyan resize-none"
             placeholder="Descripción breve del perfume..."
           />
           <p className="mt-1 text-right text-[10px] text-white/30">
@@ -195,7 +195,7 @@ export default function AdminProductForm({
       </section>
 
       {/* Familias olfativas */}
-      <section className="rounded-2xl border border-white/5 bg-white/3 p-5 space-y-4">
+      <section className="rounded-2xl border border-white/5 bg-bg-secondary/3 p-5 space-y-4">
         <h2 className="text-xs font-bold uppercase tracking-wider text-white/40">
           Familias Olfativas
         </h2>
@@ -208,7 +208,7 @@ export default function AdminProductForm({
                 onClick={() => toggleFamilia(f.familiaId)}
                 className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
                   selected
-                    ? "border-brand-emerald bg-brand-emerald/10 text-brand-emerald"
+                    ? "border-brand-emerald bg-brand-emerald/10 text-accent-teal"
                     : "border-white/10 text-white/50 hover:border-white/20 hover:text-white"
                 }`}
               >
@@ -220,7 +220,7 @@ export default function AdminProductForm({
       </section>
 
       {/* Variantes y precios */}
-      <section className="rounded-2xl border border-white/5 bg-white/3 p-5 space-y-4">
+      <section className="rounded-2xl border border-white/5 bg-bg-secondary/3 p-5 space-y-4">
         <h2 className="text-xs font-bold uppercase tracking-wider text-white/40">
           Variantes y Precios
         </h2>
@@ -229,7 +229,7 @@ export default function AdminProductForm({
           {variantes.map((v) => (
             <div
               key={v.varianteId}
-              className="rounded-xl border border-white/5 bg-white/3 p-4"
+              className="rounded-xl border border-white/5 bg-bg-secondary/3 p-4"
             >
               <div className="mb-3 flex items-center justify-between">
                 <span className="text-sm font-semibold text-white">{v.nombre}</span>
@@ -257,7 +257,7 @@ export default function AdminProductForm({
                     onChange={(e) =>
                       updateVariante(v.varianteId, "precio", Number(e.target.value))
                     }
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none focus:border-brand-cyan"
+                    className="w-full rounded-lg border border-white/10 bg-bg-secondary/5 px-3 py-2 text-sm text-white outline-none focus:border-brand-cyan"
                   />
                 </div>
                 <div>
@@ -277,7 +277,7 @@ export default function AdminProductForm({
                       )
                     }
                     placeholder="Opcional"
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/70 placeholder-white/20 outline-none focus:border-brand-cyan"
+                    className="w-full rounded-lg border border-white/10 bg-bg-secondary/5 px-3 py-2 text-sm text-white/70 placeholder-white/20 outline-none focus:border-brand-cyan"
                   />
                 </div>
                 <div>
@@ -291,7 +291,7 @@ export default function AdminProductForm({
                     onChange={(e) =>
                       updateVariante(v.varianteId, "stock", Number(e.target.value))
                     }
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none focus:border-brand-cyan"
+                    className="w-full rounded-lg border border-white/10 bg-bg-secondary/5 px-3 py-2 text-sm text-white outline-none focus:border-brand-cyan"
                   />
                 </div>
               </div>
@@ -302,7 +302,7 @@ export default function AdminProductForm({
 
       {/* Images preview */}
       {product.imagenes.length > 0 && (
-        <section className="rounded-2xl border border-white/5 bg-white/3 p-5 space-y-4">
+        <section className="rounded-2xl border border-white/5 bg-bg-secondary/3 p-5 space-y-4">
           <h2 className="text-xs font-bold uppercase tracking-wider text-white/40">
             Imágenes ({product.imagenes.length})
           </h2>

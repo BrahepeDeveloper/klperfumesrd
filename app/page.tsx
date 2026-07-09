@@ -69,14 +69,14 @@ export default async function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-emerald">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-teal">
               Recién Llegados
             </span>
-            <h2 className="font-display mt-2 text-3xl text-ink">Las fragancias más solicitadas</h2>
+            <h2 className="font-display mt-2 text-3xl text-text-primary">Las fragancias más solicitadas</h2>
           </div>
           <Link
             href="/catalogo"
-            className="text-sm font-semibold text-ink underline decoration-brand-cyan decoration-2 underline-offset-4"
+            className="text-sm font-semibold text-text-primary underline decoration-brand-cyan decoration-2 underline-offset-4"
           >
             Ver catálogo completo →
           </Link>
@@ -89,7 +89,7 @@ export default async function HomePage() {
         </div>
 
         {productos.length === 0 && (
-          <p className="text-center text-sm text-ink-soft">
+          <p className="text-center text-sm text-text-primary-soft">
             No hay productos disponibles todavía. Corre el seed para cargar el catálogo.
           </p>
         )}

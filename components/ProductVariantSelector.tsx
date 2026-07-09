@@ -62,7 +62,7 @@ export default function ProductVariantSelector({
 
   if (variants.length === 0) {
     return (
-      <div className="mt-8 rounded-2xl bg-cream-dark/60 p-4 text-sm text-ink-soft">
+      <div className="mt-8 rounded-2xl bg-bg-primary-dark/60 p-4 text-sm text-text-primary-soft">
         Sin variantes disponibles por el momento.
       </div>
     );
@@ -72,7 +72,7 @@ export default function ProductVariantSelector({
     <div className="mt-8 space-y-6">
       {/* Variant buttons */}
       <div>
-        <p className="mb-3 text-xs font-bold uppercase tracking-wider text-ink-soft">
+        <p className="mb-3 text-xs font-bold uppercase tracking-wider text-text-primary-soft">
           Presentación
         </p>
         <div className="flex flex-wrap gap-2">
@@ -86,10 +86,10 @@ export default function ProductVariantSelector({
                 disabled={outOfStock}
                 className={`relative rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${
                   active
-                    ? "border-ink bg-ink text-white"
+                    ? "border-ink bg-bg-secondary text-white"
                     : outOfStock
-                    ? "cursor-not-allowed border-ink/10 text-ink/30 line-through"
-                    : "border-ink/15 text-ink hover:border-ink hover:bg-ink/5"
+                    ? "cursor-not-allowed border-ink/10 text-text-primary/30 line-through"
+                    : "border-ink/15 text-text-primary hover:border-ink hover:bg-bg-secondary/5"
                 }`}
               >
                 {v.nombre}
@@ -107,16 +107,16 @@ export default function ProductVariantSelector({
       {/* Price display */}
       {selected && (
         <div className="flex items-baseline gap-3">
-          <span className="font-display text-4xl text-ink">
+          <span className="font-display text-4xl text-text-primary">
             {formatPrice(selected.precio)}
           </span>
           {selected.precioComparacion &&
             selected.precioComparacion > selected.precio && (
               <>
-                <span className="text-lg text-ink-soft line-through">
+                <span className="text-lg text-text-primary-soft line-through">
                   {formatPrice(selected.precioComparacion)}
                 </span>
-                <span className="rounded-full bg-brand-emerald/15 px-2 py-0.5 text-xs font-bold text-brand-emerald">
+                <span className="rounded-full bg-brand-emerald/15 px-2 py-0.5 text-xs font-bold text-accent-teal">
                   {Math.round(
                     ((selected.precioComparacion - selected.precio) /
                       selected.precioComparacion) *
@@ -139,8 +139,8 @@ export default function ProductVariantSelector({
             added
               ? "bg-brand-emerald text-white"
               : inStock
-              ? "bg-ink text-white hover:bg-ink/80 soft-shadow"
-              : "cursor-not-allowed bg-ink/10 text-ink/30"
+              ? "bg-bg-secondary text-white hover:bg-bg-secondary/80 soft-shadow"
+              : "cursor-not-allowed bg-bg-secondary/10 text-text-primary/30"
           }`}
         >
           {added ? (
@@ -171,7 +171,7 @@ export default function ProductVariantSelector({
             className={`flex flex-1 items-center justify-center gap-2 rounded-2xl py-3.5 text-sm font-bold transition ${
               inStock
                 ? "bg-[#25D366] text-white hover:bg-[#20ba5a]"
-                : "cursor-not-allowed bg-ink/10 text-ink/30"
+                : "cursor-not-allowed bg-bg-secondary/10 text-text-primary/30"
             }`}
             aria-disabled={!inStock}
             onClick={(e) => !inStock && e.preventDefault()}
@@ -188,7 +188,7 @@ export default function ProductVariantSelector({
             href={waLink(waConsult)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-2xl border border-ink/10 px-5 py-3.5 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white"
+            className="flex items-center justify-center gap-2 rounded-2xl border border-ink/10 px-5 py-3.5 text-sm font-semibold text-text-primary transition hover:bg-bg-secondary hover:text-white"
           >
             Consultar
           </a>

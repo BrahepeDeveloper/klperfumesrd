@@ -24,11 +24,11 @@ export default function AdminProductRow({ product }: { product: ProductRow }) {
   const imgUrl = product.imagenes[0]?.urlWebp;
 
   return (
-    <tr className="group transition hover:bg-white/3">
+    <tr className="group transition hover:bg-bg-secondary/3">
       {/* Name + image */}
       <td className="px-4 py-3">
         <div className="flex items-center gap-3">
-          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-white/5">
+          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-bg-secondary/5">
             {imgUrl ? (
               <Image
                 src={imgUrl}
@@ -58,7 +58,7 @@ export default function AdminProductRow({ product }: { product: ProductRow }) {
       {/* Family */}
       <td className="hidden px-4 py-3 lg:table-cell">
         {familia ? (
-          <span className="rounded-full bg-brand-emerald/10 px-2 py-0.5 text-xs text-brand-emerald">
+          <span className="rounded-full bg-brand-emerald/10 px-2 py-0.5 text-xs text-accent-teal">
             {familia}
           </span>
         ) : (

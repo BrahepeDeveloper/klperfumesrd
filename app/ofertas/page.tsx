@@ -53,24 +53,24 @@ export default async function OfertasPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 lg:px-10">
       <div className="mb-10 text-center">
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-emerald">
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-teal">
           Precios Especiales
         </span>
-        <h1 className="font-display mt-3 text-4xl text-ink">Ofertas</h1>
-        <p className="mt-2 text-sm text-ink-soft">
+        <h1 className="font-display mt-3 text-4xl text-text-primary">Ofertas</h1>
+        <p className="mt-2 text-sm text-text-primary-soft">
           Fragancias originales con precios especiales por tiempo limitado.
         </p>
       </div>
 
       {products.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-3xl bg-cream-dark py-24 text-center">
-          <p className="font-display text-2xl text-ink">Sin ofertas activas</p>
-          <p className="mt-2 text-sm text-ink-soft">
+        <div className="flex flex-col items-center justify-center rounded-3xl bg-bg-primary-dark py-24 text-center">
+          <p className="font-display text-2xl text-text-primary">Sin ofertas activas</p>
+          <p className="mt-2 text-sm text-text-primary-soft">
             Pronto tendremos nuevas promociones. Síguenos para enterarte.
           </p>
           <Link
             href="/catalogo"
-            className="mt-8 rounded-xl bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-ink/80"
+            className="mt-8 rounded-xl bg-bg-secondary px-6 py-3 text-sm font-semibold text-white transition hover:bg-bg-secondary/80"
           >
             Ver catálogo completo
           </Link>

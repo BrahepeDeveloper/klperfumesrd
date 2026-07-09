@@ -198,3 +198,20 @@ body {
 .text-accent-teal {
   color: var(--color-accent-teal);
 }
+
+.text-text-primary-soft {
+  color: var(--color-text-secondary);
+}
+
+.bg-bg-primary-dark {
+  background-color: var(--color-bg-secondary);
+}
+
+/* Legacy support */
+.border-ink\/10 {
+  border-color: var(--color-border);
+}
+
+.decoration-brand-cyan {
+  text-decoration-color: var(--color-accent-blue);
+}

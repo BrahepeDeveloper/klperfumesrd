@@ -51,7 +51,7 @@ function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
           required
           autoComplete="email"
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-cream placeholder-cream/30 outline-none transition focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan/20"
+          className="w-full rounded-xl border border-white/10 bg-bg-secondary/5 px-4 py-3 text-sm text-cream placeholder-cream/30 outline-none transition focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan/20"
           placeholder="admin@klperfumesrd.com"
         />
       </div>
@@ -66,7 +66,7 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           required
           autoComplete="current-password"
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-cream placeholder-cream/30 outline-none transition focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan/20"
+          className="w-full rounded-xl border border-white/10 bg-bg-secondary/5 px-4 py-3 text-sm text-cream placeholder-cream/30 outline-none transition focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan/20"
           placeholder="••••••••"
         />
       </div>
@@ -90,7 +90,7 @@ function LoginForm() {
 
 export default function AdminLoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink px-4">
+    <div className="flex min-h-screen items-center justify-center bg-bg-secondary px-4">
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="mb-8 text-center">
@@ -102,7 +102,7 @@ export default function AdminLoginPage() {
           </p>
         </div>
 
-        <Suspense fallback={<div className="h-64 animate-pulse rounded-xl bg-white/5" />}>
+        <Suspense fallback={<div className="h-64 animate-pulse rounded-xl bg-bg-secondary/5" />}>
           <LoginForm />
         </Suspense>
       </div>

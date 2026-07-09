@@ -60,7 +60,7 @@ export default function CatalogSidebar({
       {activeCount > 0 && (
         <button
           onClick={clearAll}
-          className="text-xs font-semibold text-brand-cyan underline underline-offset-4"
+          className="text-xs font-semibold text-accent-blue underline underline-offset-4"
         >
           Limpiar todos los filtros
         </button>
@@ -115,7 +115,7 @@ export default function CatalogSidebar({
       <div className="mb-5 lg:hidden">
         <button
           onClick={() => setMobileOpen(true)}
-          className="flex items-center gap-2 rounded-xl border border-ink/10 bg-white px-4 py-2.5 text-sm font-semibold text-ink soft-shadow transition hover:bg-ink hover:text-white"
+          className="flex items-center gap-2 rounded-xl border border-ink/10 bg-bg-secondary px-4 py-2.5 text-sm font-semibold text-text-primary soft-shadow transition hover:bg-bg-secondary hover:text-white"
         >
           <svg
             width="16"
@@ -142,7 +142,7 @@ export default function CatalogSidebar({
       {/* Desktop sidebar */}
       <aside className="hidden lg:block">
         <div className="sticky top-24">
-          <h2 className="mb-5 font-display text-xl text-ink">Filtros</h2>
+          <h2 className="mb-5 font-display text-xl text-text-primary">Filtros</h2>
           {sidebarContent}
         </div>
       </aside>
@@ -154,21 +154,21 @@ export default function CatalogSidebar({
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
-          <div className="absolute right-0 top-0 h-full w-80 max-w-full overflow-y-auto bg-white shadow-2xl">
+          <div className="absolute right-0 top-0 h-full w-80 max-w-full overflow-y-auto bg-bg-secondary shadow-2xl">
             <div className="flex items-center justify-between border-b border-ink/8 px-5 py-4">
-              <h2 className="font-display text-lg text-ink">Filtros</h2>
+              <h2 className="font-display text-lg text-text-primary">Filtros</h2>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="grid h-8 w-8 place-items-center rounded-full text-ink-soft transition hover:bg-ink/5"
+                className="grid h-8 w-8 place-items-center rounded-full text-text-primary-soft transition hover:bg-bg-secondary/5"
               >
                 ✕
               </button>
             </div>
             <div className="p-5">{sidebarContent}</div>
-            <div className="sticky bottom-0 border-t border-ink/8 bg-white px-5 py-4">
+            <div className="sticky bottom-0 border-t border-ink/8 bg-bg-secondary px-5 py-4">
               <button
                 onClick={() => setMobileOpen(false)}
-                className="w-full rounded-xl bg-ink py-3 text-sm font-semibold text-white transition hover:bg-ink/80"
+                className="w-full rounded-xl bg-bg-secondary py-3 text-sm font-semibold text-white transition hover:bg-bg-secondary/80"
               >
                 Ver resultados
               </button>
@@ -216,7 +216,7 @@ function PriceRangeFilter({
 
   return (
     <div>
-      <h3 className="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-ink-soft">
+      <h3 className="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-text-primary-soft">
         Precio (RD$)
       </h3>
       <div className="flex items-center gap-2">
@@ -227,9 +227,9 @@ function PriceRangeFilter({
           value={min}
           onChange={(e) => setMin(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && apply()}
-          className="w-full rounded-lg border border-ink/10 bg-white px-2.5 py-1.5 text-sm text-ink outline-none focus:border-brand-cyan [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="w-full rounded-lg border border-ink/10 bg-bg-secondary px-2.5 py-1.5 text-sm text-text-primary outline-none focus:border-brand-cyan [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
-        <span className="shrink-0 text-xs text-ink-soft">–</span>
+        <span className="shrink-0 text-xs text-text-primary-soft">–</span>
         <input
           type="number"
           min={0}
@@ -237,20 +237,20 @@ function PriceRangeFilter({
           value={max}
           onChange={(e) => setMax(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && apply()}
-          className="w-full rounded-lg border border-ink/10 bg-white px-2.5 py-1.5 text-sm text-ink outline-none focus:border-brand-cyan [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="w-full rounded-lg border border-ink/10 bg-bg-secondary px-2.5 py-1.5 text-sm text-text-primary outline-none focus:border-brand-cyan [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
       </div>
       <div className="mt-2 flex gap-2">
         <button
           onClick={apply}
-          className="flex-1 rounded-lg bg-ink py-1.5 text-xs font-semibold text-white transition hover:bg-ink/80"
+          className="flex-1 rounded-lg bg-bg-secondary py-1.5 text-xs font-semibold text-white transition hover:bg-bg-secondary/80"
         >
           Aplicar
         </button>
         {hasActive && (
           <button
             onClick={clear}
-            className="rounded-lg border border-ink/10 px-3 py-1.5 text-xs font-semibold text-ink-soft transition hover:bg-ink/5"
+            className="rounded-lg border border-ink/10 px-3 py-1.5 text-xs font-semibold text-text-primary-soft transition hover:bg-bg-secondary/5"
           >
             ✕
           </button>
@@ -277,7 +277,7 @@ function FilterGroup({
 }) {
   return (
     <div>
-      <h3 className="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-ink-soft">
+      <h3 className="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-text-primary-soft">
         {label}
       </h3>
       <div className={scrollable ? "max-h-52 overflow-y-auto" : ""}>
@@ -290,15 +290,15 @@ function FilterGroup({
                 onClick={() => toggle(param, opt.slug)}
                 className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-left text-sm transition ${
                   isActive
-                    ? "bg-ink font-semibold text-white"
-                    : "text-ink hover:bg-ink/6"
+                    ? "bg-bg-secondary font-semibold text-white"
+                    : "text-text-primary hover:bg-bg-secondary/6"
                 }`}
               >
                 <span
                   className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border transition ${
                     isActive
                       ? "border-white bg-brand-cyan"
-                      : "border-ink/20 bg-white"
+                      : "border-ink/20 bg-bg-secondary"
                   }`}
                 >
                   {isActive && (

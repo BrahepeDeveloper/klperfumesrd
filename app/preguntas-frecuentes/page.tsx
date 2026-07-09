@@ -46,9 +46,9 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between gap-4 py-5 text-left"
       >
-        <span className="font-semibold text-ink">{q}</span>
+        <span className="font-semibold text-text-primary">{q}</span>
         <span
-          className={`shrink-0 text-brand-cyan transition-transform duration-300 ${open ? "rotate-45" : ""}`}
+          className={`shrink-0 text-accent-blue transition-transform duration-300 ${open ? "rotate-45" : ""}`}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <line x1="12" y1="5" x2="12" y2="19" />
@@ -57,7 +57,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         </span>
       </button>
       {open && (
-        <p className="pb-5 text-sm leading-relaxed text-ink-soft">{a}</p>
+        <p className="pb-5 text-sm leading-relaxed text-text-primary-soft">{a}</p>
       )}
     </div>
   );
@@ -67,10 +67,10 @@ export default function FaqPage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-16 lg:px-10">
       <div className="mb-12 text-center">
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-emerald">
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-teal">
           Resolvemos tus dudas
         </span>
-        <h1 className="font-display mt-3 text-5xl text-ink">
+        <h1 className="font-display mt-3 text-5xl text-text-primary">
           Preguntas Frecuentes
         </h1>
       </div>
@@ -81,7 +81,7 @@ export default function FaqPage() {
         ))}
       </div>
 
-      <div className="mt-14 rounded-3xl bg-ink p-8 text-center text-cream">
+      <div className="mt-14 rounded-3xl bg-bg-secondary p-8 text-center text-cream">
         <p className="font-display text-xl">¿Tu pregunta no está aquí?</p>
         <p className="mt-2 text-sm text-cream/60">Escríbenos directamente por WhatsApp.</p>
         <a

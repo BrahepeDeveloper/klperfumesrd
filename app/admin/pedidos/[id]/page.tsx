@@ -68,7 +68,7 @@ export default async function PedidoDetailPage({ params }: Props) {
 
       <div className="space-y-5">
         {/* Cliente */}
-        <section className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+        <section className="rounded-2xl border border-white/5 bg-bg-secondary/[0.02] p-5">
           <h2 className="mb-4 text-[11px] font-bold uppercase tracking-wider text-white/30">
             Cliente
           </h2>
@@ -96,7 +96,7 @@ export default async function PedidoDetailPage({ params }: Props) {
 
         {/* Dirección */}
         {pedido.direccionEnvio && (
-          <section className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+          <section className="rounded-2xl border border-white/5 bg-bg-secondary/[0.02] p-5">
             <h2 className="mb-3 text-[11px] font-bold uppercase tracking-wider text-white/30">
               Dirección de Envío
             </h2>
@@ -105,7 +105,7 @@ export default async function PedidoDetailPage({ params }: Props) {
         )}
 
         {/* Items */}
-        <section className="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden">
+        <section className="rounded-2xl border border-white/5 bg-bg-secondary/[0.02] overflow-hidden">
           <div className="p-5 pb-0">
             <h2 className="mb-4 text-[11px] font-bold uppercase tracking-wider text-white/30">
               Productos
@@ -153,14 +153,14 @@ export default async function PedidoDetailPage({ params }: Props) {
         </section>
 
         {/* Meta */}
-        <section className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+        <section className="rounded-2xl border border-white/5 bg-bg-secondary/[0.02] p-5">
           <h2 className="mb-4 text-[11px] font-bold uppercase tracking-wider text-white/30">
             Información del Pedido
           </h2>
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-wide text-white/25">Estado</p>
-              <span className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${ESTADO_BADGE[pedido.estado] ?? "bg-white/10 text-white/50"}`}>
+              <span className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${ESTADO_BADGE[pedido.estado] ?? "bg-bg-secondary/10 text-white/50"}`}>
                 {pedido.estado}
               </span>
             </div>

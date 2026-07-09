@@ -4,22 +4,22 @@ export default function ProductoNotFound() {
   return (
     <div className="mx-auto flex max-w-2xl flex-col items-center justify-center px-6 py-32 text-center">
       <p className="text-5xl">🕵️</p>
-      <h1 className="font-display mt-6 text-3xl text-ink">
+      <h1 className="font-display mt-6 text-3xl text-text-primary">
         Fragancia no encontrada
       </h1>
-      <p className="mt-3 text-sm text-ink-soft">
+      <p className="mt-3 text-sm text-text-primary-soft">
         Este producto no existe o fue removido del catálogo.
       </p>
       <div className="mt-8 flex gap-4">
         <Link
           href="/catalogo"
-          className="rounded-xl bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-ink/80"
+          className="rounded-xl bg-bg-secondary px-6 py-3 text-sm font-semibold text-white transition hover:bg-bg-secondary/80"
         >
           Ver catálogo
         </Link>
         <Link
           href="/"
-          className="rounded-xl border border-ink/10 px-6 py-3 text-sm font-semibold text-ink transition hover:bg-ink/5"
+          className="rounded-xl border border-ink/10 px-6 py-3 text-sm font-semibold text-text-primary transition hover:bg-bg-secondary/5"
         >
           Ir al inicio
         </Link>
