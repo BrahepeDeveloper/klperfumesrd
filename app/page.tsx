@@ -34,7 +34,11 @@ async function getFeaturedProducts(): Promise<ProductCardData[]> {
       };
     });
   } catch (error) {
-    console.error("Error fetching featured products:", error);
+    const msg = error instanceof Error ? error.message : String(error);
+    console.error("Error fetching featured products:", msg);
+    if (msg.includes("Can't reach database")) {
+      console.error("Database connection issue - returning empty array");
+    }
     return [];
   }
 }
