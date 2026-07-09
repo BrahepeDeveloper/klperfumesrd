@@ -1,13 +1,12 @@
-import { prisma } from "@/lib/prisma";
 import Hero from "@/components/Hero";
 import TrustBadges from "@/components/TrustBadges";
-import ProductCard, { type ProductCardData } from "@/components/ProductCard";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
-async function getFeaturedProducts(): Promise<ProductCardData[]> {
+async function getFeaturedProducts() {
   try {
+    const { prisma } = await import("@/lib/prisma");
     const productos = await prisma.producto.findMany({
       where: { activo: true },
       take: 8,
@@ -34,11 +33,7 @@ async function getFeaturedProducts(): Promise<ProductCardData[]> {
       };
     });
   } catch (error) {
-    const msg = error instanceof Error ? error.message : String(error);
-    console.error("Error fetching featured products:", msg);
-    if (msg.includes("Can't reach database")) {
-      console.error("Database connection issue - returning empty array");
-    }
+    console.error("DB Error:", error);
     return [];
   }
 }
@@ -59,7 +54,14 @@ const orgJsonLd = {
 };
 
 export default async function HomePage() {
-  const productos = await getFeaturedProducts();
+  let productos = [];
+  try {
+    productos = await getFeaturedProducts();
+  } catch (e) {
+    console.error("HomePage error:", e);
+  }
+
+  const ProductCard = (await import("@/components/ProductCard")).default;
 
   return (
     <>
@@ -86,15 +88,15 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-          {productos.map((p) => (
-            <ProductCard key={p.slug} product={p} />
-          ))}
-        </div>
-
-        {productos.length === 0 && (
+        {productos.length > 0 ? (
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            {productos.map((p: any) => (
+              <ProductCard key={p.slug} product={p} />
+            ))}
+          </div>
+        ) : (
           <p className="text-center text-sm text-ink-soft">
-            No hay productos disponibles todavía. Corre el seed para cargar el catálogo.
+            No hay productos disponibles. Revisando conexión...
           </p>
         )}
       </section>
